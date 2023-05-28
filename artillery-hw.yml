@@ -1,0 +1,50 @@
+config:
+  target: "https://postman-echo.com/"
+  plugins:
+    expect: {}
+    ensure: {}
+  phases:
+    - name: "Artillery Performance Test"
+      duration: 1
+      arrivalCount: 100
+  ensure:
+    thresholds:
+      # p99 of response time must be <2000:
+      - "http.response_time.p99": 2000
+      # p95 of response time must be <1500:
+      - "http.response_time.p95": 1500
+      - "http.response_time.min": 120
+    conditions:
+      - expression: vusers.failed == 0
+      - expression: "http.codes.200 == 200"
+  payload:
+    path: "./payload/users.csv"
+    fields:
+      - "name"
+      - "job"
+    # order: sequence
+scenarios:
+  - name: "POST Request with data from csv"
+    flow:
+      - post:
+          url: "{{ target }}post"
+          headers:
+            Content-Type: "application/json"
+          name: "CreateUser"
+          json:
+            name: "{{ name }}"
+            job: "{{ job }}"
+          capture:
+            - json: "$.json.name"
+              as: "user_name"
+            - json: "$.json.job"
+              as: "job_title"
+      - log: "User name is: {{ user_name }}"
+      - log: "Job is: {{ job_title }}"
+      - get:
+          url: "{{ target }}get"
+          name: "GetURL"
+          capture:
+            - json: "$.url"
+              as: "url"
+      - log: "URL is: {{ url }}"
