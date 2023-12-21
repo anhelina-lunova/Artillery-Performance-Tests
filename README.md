@@ -16,6 +16,16 @@
 
 ## Результат
 
+<!--
+
+<img src='https://i.imgur.com/FFZKM1z.png' width='333'> <img src='https://i.imgur.com/euSPv0K.png' width='333'> <img src='https://i.imgur.com/0YKjIbE.png' width='333'>
+
 ![Screenshot](https://i.imgur.com/FFZKM1z.png)
 ![Screenshot](https://i.imgur.com/euSPv0K.png)
 ![Screenshot](https://i.imgur.com/0YKjIbE.png)
+
+-->
+
+✅                                    |✅                                       |✅
+:------------------------------------:|:--------------------------------------:|:-------------------------------------:
+![](https://i.imgur.com/FFZKM1z.png)  |  ![](https://i.imgur.com/euSPv0K.png)  |  ![](https://i.imgur.com/0YKjIbE.png)
